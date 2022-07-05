@@ -1,2 +1,9 @@
-<%= @business.name %>
-<%= @service.name %>
+<h1><%= @business.name %></h1>
+<h2>Your service: <%= @service.name %></h2>
+
+<%= form_tag("/appointments/new", method: :get) do %>
+    <%= hidden_field_tag "business_id", @business.id %>
+    <%= hidden_field_tag "service_id", @service.id %>
+    <%= select_tag "technician_id", options_from_collection_for_select(@technicians, "id", "name") %>
+    <%= submit_tag "Next: confirm apt" %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= @business.name %>
+<%= @service.name %>
+<%= @technician.name %>
+
+<%= form_for @appointment do |f| %>
+    <%= f.hidden_field :appointment, :offer_id %>
+    <%= f.text_field :client_name %>
+    <%= f.submit %>
+<% end %>

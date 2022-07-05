@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :businesses, only: [:show]
 
   #
-  resources :appointments
+  resources :appointments, only: [:new, :create, :show]
   resources :clients
   resources :offers
   resources :services
