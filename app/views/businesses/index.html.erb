@@ -1,7 +1,6 @@
-<h1>Businesses</h1>
+<h1>Welcome to OmniPoint</h1>
 
-<ul>
-    <% @businesses.each do |business| %>
-        <li><%= link_to business.name, business_path(business) %></li>
-    <% end %>
-</ul>
+<%= form_tag("/businesses/welcome", method: :get) do %>
+    <%= select_tag "business_id", options_from_collection_for_select(@businesses, "id", "name") %>
+    <%= submit_tag "Go to this business" %>
+<% end %>
