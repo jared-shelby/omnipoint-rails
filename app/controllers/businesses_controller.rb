@@ -4,7 +4,6 @@ class BusinessesController < ApplicationController
         @businesses = Business.all
     end
 
-
     def welcome
         @business = Business.find(params[:business_id])
         redirect_to business_path(@business)
@@ -12,6 +11,7 @@ class BusinessesController < ApplicationController
 
     def show
         @business = Business.find(params[:id])
+        @services = @business.services
     end
 
 end
