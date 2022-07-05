@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resources :clients
   resources :offers
   resources :services
-  resources :technicians
+  resources :technicians, only: [:index]
 
 end
