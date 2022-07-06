@@ -4,14 +4,25 @@ class AppointmentsController < ApplicationController
         @business = Business.find(params[:business_id])
         @service = Service.find(params[:service_id])
         @technician = Technician.find(params[:technician_id])
-        @appointment = Appointment.new(offer: Offer.find_by(service: @service, technician: @technician))
     end
 
     def create
-        @appointment = Appointment.new(client_id: Client.find_or_create_by(name: params[:appointment][:client_name]))
+        puts params
+        @appointment = Appointment.new(
+            client: Client.find_or_create_by(name: params[:client_name], number: params[:client_number], email: params[:client_email]),
+            offer: Offer.find_by(service_id: params[:service_id], technician_id: params[:technician_id])
+        )
+
+        if @appointment.save
+            redirect_to appointment_path(@appointment)
+        else
+            # flash error message
+            render :new
+        end
     end
 
     def show
+        @appointment = Appointment.find(params[:id])
     end
 
 end

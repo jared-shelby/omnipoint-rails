@@ -3,8 +3,11 @@
 <h3>Technician: <%= @technician.name %></h3>
 <p>Finally, please provide us with your contact information:</p>
 
-<%= form_for @appointment do |f| %>
-    <%= f.hidden_field :appointment, :offer_id %>
-    <%= f.text_field :client_name %>
-    <%= f.submit %>
+<%= form_tag("/appointments", method: :post) do %>
+    <%= hidden_field_tag "service_id", @service.id %>
+    <%= hidden_field_tag "technician_id", @technician.id %>
+    Name: <%= text_field_tag "client_name" %>
+    Phone number: <%= number_field_tag "client_number" %>
+    Email address: <%= text_field_tag "client_email" %>
+    <%= submit_tag "Finalize appointment" %>
 <% end %>
