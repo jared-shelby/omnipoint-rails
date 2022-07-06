@@ -24,6 +24,7 @@ wyatt = Technician.create(name: "Wyatt", business_id: 3)
 
 # create technician availability
 AvailableTime.create(time: DateTime.now, technician: joan)
+AvailableTime.create(time: DateTime.now, technician: toby)
 AvailableTime.create(time: DateTime.now, technician: sam)
 AvailableTime.create(time: DateTime.now, technician: jessica)
 AvailableTime.create(time: DateTime.now, technician: james)
@@ -45,5 +46,3 @@ Offer.create(technician_id: 7, service_id: 6)
 Offer.create(technician_id: 7, service_id: 7)
 Offer.create(technician_id: 8, service_id: 6)
 Offer.create(technician_id: 8, service_id: 7)
-
-# create technician availability
