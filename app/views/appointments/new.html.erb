@@ -1,6 +1,6 @@
 <h1>Business: <%= @business.name %></h1>
 
-<%= form_tag("/appointments/new", method: :get) do %>
+<%= form_tag(@form_url, method: @form_method) do %>
     <%= hidden_field_tag "business_id", @business.id %>
     <% if @service.nil? %>
         <%= select_tag("service_id", options_from_collection_for_select(@services, "id", "name")) %>
@@ -11,6 +11,11 @@
         <%= select_tag "technician_id", options_from_collection_for_select(@technicians, "id", "name") %>
     <% elsif !@technician.nil? %>
         <%= hidden_field_tag "technician_id", @technician.id %>
+    <% end %>
+    <% if !@offer.nil? %>
+        Name: <%= text_field_tag "client_name" %>
+        Phone number: <%= number_field_tag "client_number" %>
+        Email address: <%= text_field_tag "client_email" %>
     <% end %>
     <%= submit_tag "Next" %>
 <% end %>
