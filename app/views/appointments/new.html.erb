@@ -1,6 +1,7 @@
-<%= @business.name %>
-<%= @service.name %>
-<%= @technician.name %>
+<h1>Business: <%= @business.name %></h1>
+<h2>Service: <%= @service.name %></h2>
+<h3>Technician: <%= @technician.name %></h3>
+<p>Finally, please provide us with your contact information:</p>
 
 <%= form_for @appointment do |f| %>
     <%= f.hidden_field :appointment, :offer_id %>

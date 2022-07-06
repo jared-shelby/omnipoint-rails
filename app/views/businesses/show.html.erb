@@ -1,9 +1,8 @@
 <h1><%= @business.name %></h1>
-
 <p>Please choose a service:</p>
 
 <%= form_tag("/technicians", method: :get) do %>
     <%= hidden_field_tag "business_id", @business.id %>
     <%= select_tag "service_id", options_from_collection_for_select(@services, "id", "name") %>
-    <%= submit_tag "Next: choose technician" %>
+    <%= submit_tag "Next: choose a technician" %>
 <% end %>
