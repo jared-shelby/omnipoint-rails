@@ -1,4 +1,4 @@
-<h1>Business: <%= @business.name %></h1>
+<h1><%= @business.name %></h1>
 
 <%= form_tag(@form_url, method: @form_method) do %>
     <%= hidden_field_tag "business_id", @business.id %>

@@ -8,8 +8,8 @@ class AppointmentsController < ApplicationController
         else
             @business = Business.find(params[:business_id])
             @services = @business.services
-            @technicians = @business.technicians
             @service = Service.find(params[:service_id]) unless params[:service_id].nil?
+            @technicians = @business.find_technicians_by_service(@service) unless @service.nil?
             @technician = Technician.find(params[:technician_id]) unless (params[:technician_id].nil? || params[:service_id].nil?)
             @offer = Offer.find_by(service: @service, technician: @technician) unless (@service.nil? || @technician.nil?)
             @appointment = Appointment.new unless @offer.nil?
