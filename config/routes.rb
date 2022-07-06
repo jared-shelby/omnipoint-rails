@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   #
   resources :appointments, only: [:new, :create, :show]
+  get "/appointments/:id/calendar", to: "appointments#calendar"
   #resources :clients
   #resources :offers
   #resources :services

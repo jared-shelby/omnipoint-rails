@@ -1,3 +1,5 @@
+require "icalendar"
+
 class AppointmentsController < ApplicationController
 
     def new
@@ -33,4 +35,14 @@ class AppointmentsController < ApplicationController
         @appointment = Appointment.find(params[:id])
     end
 
+    def calendar
+        @appointment = Appointment.find(params[:id])
+        cal = Icalendar::Calendar.new
+        event = Icalendar::Event.new
+        event.dtstart = @appointment.time
+        event.summary = "Your appointment at #{@appointment.business.name} with #{@appointment.technician.name} for #{@appointment.service.name}."
+        event.url = appointment_path(@appointment)
+        cal.add_event event
+        send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: "appointment.ics"
+    end
 end
