@@ -6,17 +6,19 @@
         <%= select_tag("service_id", options_from_collection_for_select(@services, "id", "name")) %>
     <% else %>
         <%= hidden_field_tag "service_id", @service.id %>
+        <p>Service: <%= @service.name %></p>
     <% end %>
     <% if @technician.nil? && !@service.nil? %>
         <%= select_tag "technician_id", options_from_collection_for_select(@technicians, "id", "name") %>
     <% elsif !@technician.nil? %>
         <%= hidden_field_tag "technician_id", @technician.id %>
+        <p>Technician: <%= @technician.name %></p>
     <% end %>
     <% if !@offer.nil? %>
-        Time: <%= select_tag "time_id", options_from_collection_for_select(@availability, "id", "readable") %>
-        Name: <%= text_field_tag "client_name" %>
-        Phone number: <%= number_field_tag "client_number" %>
-        Email address: <%= text_field_tag "client_email" %>
+        <p>Time: <%= select_tag "time_id", options_from_collection_for_select(@availability, "id", "readable") %></p>
+        <p>Name: <%= text_field_tag "client_name" %></p>
+        <p>Phone number: <%= number_field_tag "client_number" %></p>
+        <p>Email address: <%= text_field_tag "client_email" %></p>
     <% end %>
     <%= submit_tag "Next" %>
 <% end %>
