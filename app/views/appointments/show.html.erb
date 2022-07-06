@@ -4,5 +4,7 @@
     <li>Business: <%=@appointment.offer.technician.business.name%></li>
     <li>Service: <%=@appointment.offer.service.name%></li>
     <li>Technician: <%=@appointment.offer.technician.name%></li>
-    <li>Time: </li>
+    <li>Time: <%=@appointment.readable_time%></li>
 </ul>
+
+<a href=<%="#{appointment_path(@appointment)}/calendar"%>>Download appointment</a>
