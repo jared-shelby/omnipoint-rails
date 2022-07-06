@@ -1,13 +1,16 @@
 <h1>Business: <%= @business.name %></h1>
-<h2>Service: <%= @service.name %></h2>
-<h3>Technician: <%= @technician.name %></h3>
-<p>Finally, please provide us with your contact information:</p>
 
-<%= form_tag("/appointments", method: :post) do %>
-    <%= hidden_field_tag "service_id", @service.id %>
-    <%= hidden_field_tag "technician_id", @technician.id %>
-    Name: <%= text_field_tag "client_name" %>
-    Phone number: <%= number_field_tag "client_number" %>
-    Email address: <%= text_field_tag "client_email" %>
-    <%= submit_tag "Finalize appointment" %>
+<%= form_tag("/appointments/new", method: :get) do %>
+    <%= hidden_field_tag "business_id", @business.id %>
+    <% if @service.nil? %>
+        <%= select_tag("service_id", options_from_collection_for_select(@services, "id", "name")) %>
+    <% else %>
+        <%= hidden_field_tag "service_id", @service.id %>
+    <% end %>
+    <% if @technician.nil? && !@service.nil? %>
+        <%= select_tag "technician_id", options_from_collection_for_select(@technicians, "id", "name") %>
+    <% elsif !@technician.nil? %>
+        <%= hidden_field_tag "technician_id", @technician.id %>
+    <% end %>
+    <%= submit_tag "Next" %>
 <% end %>

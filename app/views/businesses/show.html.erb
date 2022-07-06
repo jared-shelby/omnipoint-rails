@@ -1,4 +1,6 @@
 <h1><%= @business.name %></h1>
+<a href=<%="/appointments/new?business_id=#{@business.id}"%>>Make an appointment</a>
+
 <p>Please choose a service:</p>
 
 <%= form_tag("/technicians", method: :get) do %>
