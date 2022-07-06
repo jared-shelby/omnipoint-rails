@@ -13,14 +13,23 @@ Service.create(name: "Facial", price: 25)
 Service.create(name: "Acne treatment", price: 50)
 
 # create technicians
-Technician.create(name: "Joan", business_id: 1)
-Technician.create(name: "Toby", business_id: 1)
-Technician.create(name: "Sam", business_id: 1)
-Technician.create(name: "Jessica", business_id: 2)
-Technician.create(name: "James", business_id: 2)
-Technician.create(name: "Fran", business_id: 2)
-Technician.create(name: "Pete", business_id: 3)
-Technician.create(name: "Wyatt", business_id: 3)
+joan = Technician.create(name: "Joan", business_id: 1)
+toby = Technician.create(name: "Toby", business_id: 1)
+sam = Technician.create(name: "Sam", business_id: 1)
+jessica = Technician.create(name: "Jessica", business_id: 2)
+james = Technician.create(name: "James", business_id: 2)
+fran = Technician.create(name: "Fran", business_id: 2)
+pete = Technician.create(name: "Pete", business_id: 3)
+wyatt = Technician.create(name: "Wyatt", business_id: 3)
+
+# create technician availability
+AvailableTime.create(time: DateTime.now, technician: joan)
+AvailableTime.create(time: DateTime.now, technician: sam)
+AvailableTime.create(time: DateTime.now, technician: jessica)
+AvailableTime.create(time: DateTime.now, technician: james)
+AvailableTime.create(time: DateTime.now, technician: fran)
+AvailableTime.create(time: DateTime.now, technician: pete)
+AvailableTime.create(time: DateTime.now, technician: wyatt)
 
 # create offers
 Offer.create(technician_id: 1, service_id: 1)
@@ -36,3 +45,5 @@ Offer.create(technician_id: 7, service_id: 6)
 Offer.create(technician_id: 7, service_id: 7)
 Offer.create(technician_id: 8, service_id: 6)
 Offer.create(technician_id: 8, service_id: 7)
+
+# create technician availability

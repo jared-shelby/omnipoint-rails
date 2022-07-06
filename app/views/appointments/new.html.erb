@@ -13,6 +13,7 @@
         <%= hidden_field_tag "technician_id", @technician.id %>
     <% end %>
     <% if !@offer.nil? %>
+        Time: <%= select_tag "time_id", options_from_collection_for_select(@availability, "id", "readable") %>
         Name: <%= text_field_tag "client_name" %>
         Phone number: <%= number_field_tag "client_number" %>
         Email address: <%= text_field_tag "client_email" %>
