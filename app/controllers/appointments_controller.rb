@@ -30,7 +30,7 @@ class AppointmentsController < ApplicationController
             )
     
             if @appointment.save
-                flash[:notice] = "Your appointment has been confirmed & saved in our system!"
+                flash[:notice] = "Your appointment has been confirmed & saved in the OmniPoint system!"
                 redirect_to appointment_path(@appointment)
             else
                 flash[:notice] = "Please address the following errors:"
