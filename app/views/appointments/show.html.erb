@@ -1,4 +1,8 @@
 <h1>Your appointment is confirmed!</h1>
+
+<%= flash[:notice] %>
+
+
 <ul>
     <li>Your name: <%=@appointment.client.name%></li>
     <li>Business: <%=@appointment.offer.technician.business.name%></li>
