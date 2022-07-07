@@ -1,2 +1,7 @@
 <h1><%= @business.name %></h1>
+
+<%= flash[:notice] %>
+
 <a href=<%="/appointments/new?business_id=#{@business.id}"%>>Make an appointment</a>
+
+<%= link_to "Edit this business", edit_business_path(@business) %> <br>
