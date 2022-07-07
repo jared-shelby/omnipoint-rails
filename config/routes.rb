@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   # all businesses dropdown page -> individual business page w/ appointment form
   get "/businesses/welcome", to: "businesses#welcome"
-  resources :businesses, only: [:index, :show]
+
+  # additional routes to show, edit, and update businesses
+  resources :businesses, only: [:index, :show, :edit, :update]
 
   # new appointment page houses the app flow; show confirmation page
   resources :appointments, only: [:new, :create, :show]
