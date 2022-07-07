@@ -1,5 +1,3 @@
-require "icalendar"
-
 class AppointmentsController < ApplicationController
 
     # page content updates depending on the step in the appointment process the user is on
