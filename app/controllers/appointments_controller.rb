@@ -30,6 +30,7 @@ class AppointmentsController < ApplicationController
             )
     
             if @appointment.save
+                flash[:notice] = "Your appointment has been confirmed & saved in our system!"
                 redirect_to appointment_path(@appointment)
             else
                 flash[:notice] = "Please address the following errors:"
@@ -37,7 +38,8 @@ class AppointmentsController < ApplicationController
             end
         else
             flash[:notice] = "Please address the following errors:"
-            render :new
+            flash[:errors] = @client.errors.full_messages
+            redirect_to new_appointment_path(client_params)
         end
     end
 
@@ -58,4 +60,11 @@ class AppointmentsController < ApplicationController
         cal.add_event event
         send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: "appointment.ics"
     end
+
+    private
+
+    def client_params
+        params.permit(:business_id, :service_id, :technician_id)
+    end
+
 end

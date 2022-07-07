@@ -1,14 +1,12 @@
 <h1><%= @business.name %></h1>
 
-<% if @client %>
-    <% if @client.errors.any?%>
-        <%= flash[:notice] %>
-        <ul>
-            <% @client.errors.full_messages.each do |error| %>
-                <li><%= error %></li>
-            <% end %>
-        </ul>
-    <% end %>
+<% if flash[:errors] %>
+    <%= flash[:notice] %>
+    <ul>
+        <% flash[:errors].each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
 <% end %>
 
 <%= form_tag(@form_url, method: @form_method) do %>
