@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :businesses, only: [:index, :show, :edit, :update]
 
   # new appointment page houses the app flow; show confirmation page
-  resources :appointments, only: [:new, :create, :show]
+  resources :appointments, only: [:new, :create, :show, :destroy]
 
   # calendar download link for appointment once confirmed
   get "/appointments/:id/calendar", to: "appointments#calendar"

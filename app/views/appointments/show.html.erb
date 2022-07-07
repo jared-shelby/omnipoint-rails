@@ -16,3 +16,5 @@
 <div>
 
 <a href=<%="#{appointment_path(@appointment)}/calendar"%>>Download appointment</a>
+
+<%= button_to "Cancel your appointment", @appointment, method: :delete %>
