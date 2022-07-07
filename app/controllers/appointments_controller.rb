@@ -37,6 +37,7 @@ class AppointmentsController < ApplicationController
     # show appointment confirmation page
     def show
         @appointment = Appointment.find(params[:id])
+        @qrcode = RQRCode::QRCode.new(appointment_path(@appointment)).as_svg(module_size: 5)
     end
 
     # create a download link for calendar invite with appointment information
