@@ -7,4 +7,8 @@
     <li>Time: <%=@appointment.readable_time%></li>
 </ul>
 
+<div>
+    <%= @qrcode.html_safe %>
+<div>
+
 <a href=<%="#{appointment_path(@appointment)}/calendar"%>>Download appointment</a>
