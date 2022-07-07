@@ -20,16 +20,23 @@ class AppointmentsController < ApplicationController
 
     # use client information & appointment details to create new appointment
     def create
-        @appointment = Appointment.new(
-            client: Client.find_or_create_by(name: params[:client_name], number: params[:client_number], email: params[:client_email]),
-            offer: Offer.find_by(service_id: params[:service_id], technician_id: params[:technician_id]),
-            time: AvailableTime.find(params[:time_id]).time
-        )
-
-        if @appointment.save
-            redirect_to appointment_path(@appointment)
+        @client = Client.find_or_initialize_by(name: params[:client_name], number: params[:client_number], email: params[:client_email])
+        
+        if @client.save
+            @appointment = Appointment.new(
+                client: @client,
+                offer: Offer.find_by(service_id: params[:service_id], technician_id: params[:technician_id]),
+                time: AvailableTime.find(params[:time_id]).time
+            )
+    
+            if @appointment.save
+                redirect_to appointment_path(@appointment)
+            else
+                flash[:notice] = "Please address the following errors:"
+                render :new
+            end
         else
-            # flash error message
+            flash[:notice] = "Please address the following errors:"
             render :new
         end
     end
