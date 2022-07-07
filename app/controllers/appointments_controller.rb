@@ -2,6 +2,7 @@ require "icalendar"
 
 class AppointmentsController < ApplicationController
 
+    # page content updates depending on the step in the appointment process the user is on
     def new
         if params[:business_id].nil?
             redirect_to "/"
@@ -18,6 +19,8 @@ class AppointmentsController < ApplicationController
             @form_method = @offer.nil? ? :get : :post
         end
     end
+
+    # use client information & appointment details to create new appointment
     def create
         @appointment = Appointment.new(
             client: Client.find_or_create_by(name: params[:client_name], number: params[:client_number], email: params[:client_email]),
@@ -33,10 +36,12 @@ class AppointmentsController < ApplicationController
         end
     end
 
+    # show appointment confirmation page
     def show
         @appointment = Appointment.find(params[:id])
     end
 
+    # create a download link for calendar invite with appointment information
     def calendar
         @appointment = Appointment.find(params[:id])
         cal = Icalendar::Calendar.new
