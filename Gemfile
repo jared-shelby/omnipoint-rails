@@ -27,7 +27,11 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Create calendar invites
 gem "icalendar"
+
+# Generate & display QR codes
+gem "rqrcode", "~> 2.0"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
