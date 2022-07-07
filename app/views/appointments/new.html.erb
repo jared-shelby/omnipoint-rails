@@ -1,5 +1,16 @@
 <h1><%= @business.name %></h1>
 
+<% if @client %>
+    <% if @client.errors.any?%>
+        <%= flash[:notice] %>
+        <ul>
+            <% @client.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+<% end %>
+
 <%= form_tag(@form_url, method: @form_method) do %>
     <%= hidden_field_tag "business_id", @business.id %>
     <% if @service.nil? %>
