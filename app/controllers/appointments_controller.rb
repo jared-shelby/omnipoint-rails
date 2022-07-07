@@ -61,6 +61,13 @@ class AppointmentsController < ApplicationController
         send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: "appointment.ics"
     end
 
+    # delete appointment from database
+    def destroy
+        Appointment.find(params[:id]).destroy
+        flash[:notice] = "Your appointment has been canceled."
+        redirect_to "/"
+    end
+
     private
 
     def client_params
