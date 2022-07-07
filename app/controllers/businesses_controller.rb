@@ -36,7 +36,7 @@ class BusinessesController < ApplicationController
 
     # strong params for business
     def business_params
-        params.require(:business).permit(:id, :name, :location)
+        params.require(:business).permit(:name, :location)
     end
 
 end
