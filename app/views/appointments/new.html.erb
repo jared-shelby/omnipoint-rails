@@ -1,43 +1,71 @@
 <h1><%= @business.name %></h1>
 <h2>Schedule an Appointment</h2>
 
-<div>
-    <%= form_tag(@form_url, method: @form_method) do %>
-        <%= hidden_field_tag "business_id", @business.id %>
-        <% if @service.nil? %>
-            <h3>What are you coming in for?</h3>
+
+<%= form_tag(@form_url, method: @form_method) do %>
+    <%= hidden_field_tag "business_id", @business.id %>
+    <% if @service.nil? %>
+        <h3>What are you coming in for?</h3>
+        <div class="select">
             <%= select_tag("service_id", options_from_collection_for_select(@services, "id", "name")) %>
-        <% else %>
-            <%= hidden_field_tag "service_id", @service.id %>
-            <p><strong>Service:</strong> <%= @service.name %> - $<%= @service.price.to_i %></p>
-            <% if !request.original_url.include? "technician_id" %>
-                <h3>Who would you like to see?</h3>
-            <% end %>
+        </div>
+    <% else %>
+        <%= hidden_field_tag "service_id", @service.id %>
+        <p><strong>Service:</strong> <%= @service.name %> - $<%= @service.price.to_i %></p>
+        <% if !request.original_url.include? "technician_id" %>
+            <h3>Who would you like to see?</h3>
         <% end %>
-        <% if @technician.nil? && !@service.nil? %>
+    <% end %>
+    <% if @technician.nil? && !@service.nil? %>
+        <div class="select">
             <%= select_tag "technician_id", options_from_collection_for_select(@technicians, "id", "name") %>
-        <% elsif !@technician.nil? %>
-            <%= hidden_field_tag "technician_id", @technician.id %>
-            <p><strong>Technician:</strong> <%= @technician.name %></p>
-        <% end %>
-        <% if !@offer.nil? %>
-            <h3>When would you like to come in?</h3>
-            <p>Time: <%= select_tag "time_id", options_from_collection_for_select(@availability, "id", "readable") %></p>
-            <h4>Your details:</h4>
-            <% if flash[:errors] %>
-                <div>
+        </div>
+    <% elsif !@technician.nil? %>
+        <%= hidden_field_tag "technician_id", @technician.id %>
+        <p><strong>Technician:</strong> <%= @technician.name %></p>
+    <% end %>
+    <% if !@offer.nil? %>
+        <h3>When would you like to come in?</h3>
+        <div class="field">
+            <label class="label">Time:</label>
+            <div class="select">
+                <%= select_tag "time_id", options_from_collection_for_select(@availability, "id", "readable") %>
+            </div>
+        </div>
+        <h4>Your details:</h4>
+        <% if flash[:errors] %>
+            <div class="message">
+                <div class="message-header">
                     <%= flash[:notice] %>
+                </div>
+                <div class="message-body">
                     <ul>
                         <% flash[:errors].each do |error| %>
                             <li><%= error %></li>
                         <% end %>
                     </ul>
                 </div>
-            <% end %>
-            <p>Name: <%= text_field_tag "client_name" %></p>
-            <p>Phone number: <%= number_field_tag "client_number" %></p>
-            <p>Email address: <%= text_field_tag "client_email" %></p>
+            </div>
         <% end %>
-        <%= submit_tag "Done" %>
+        <div class="field">
+            <label class="label">Name</label>
+            <input class="input" name="client_name" id="client_name" type="text" placeholder="First & last name">
+        </div>
+        <div class="field">
+            <label class="label">Phone Number</label>
+            <input class="input" name="client_number" id="client_number" type="tel" placeholder="Format: XXXXXXXXXX (9 digits)">
+        </div>
+        <div class="field">
+            <label class="label">Email</label>
+            <input class="input" name="client_email" id="client_email" type="email" placeholder="Example: hello@omnipoint.com">
+        </div>
+        <div class="control">
+            <button class="button is-dark">Done</button>
+        </div>
     <% end %>
-</div>
+    <% if @offer.nil? %>
+        <div class="control">
+            <button type="submit" class="button is-dark">Next</button>
+        </div>
+    <% end %>
+<% end %>

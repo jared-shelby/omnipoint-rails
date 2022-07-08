@@ -17,12 +17,14 @@
         <div class="columns">
           <div class="column is-3">
           </div>
-          <div class="column is-6 has-text-centered">
-            <a href="/">
-              <img src=<%= image_url('logo.png') %> alt="site logo" style="max-height: 70px"/>
-              <h1 class="title is-size-1">OmniPoint</h1>
-            </a>
-            <hr/>
+          <div class="column is-6">
+            <div class="has-text-centered">
+              <a href="/">
+                <img src=<%= image_url('logo.png') %> alt="site logo" style="max-height: 70px"/>
+                <h1 class="title is-size-1">OmniPoint</h1>
+              </a>
+              <hr/>
+            </div>
             <%= yield %>
           </div>
           <div class="column is-3">
