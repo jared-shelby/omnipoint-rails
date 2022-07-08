@@ -40,10 +40,10 @@
                 <div class="message-header">
                     <%= flash[:notice] %>
                 </div>
-                <div class="message-body">
+                <div class="message-body has-text-left">
                     <ul>
                         <% flash[:errors].each do |error| %>
-                            <li><%= error %></li>
+                            <li>* <%= error %></li>
                         <% end %>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
         </div>
         <div class="field">
             <label class="label">Phone Number</label>
-            <input class="input" name="client_number" id="client_number" type="tel" placeholder="Format: XXXXXXXXXX (9 digits)">
+            <input class="input" name="client_number" id="client_number" type="tel" placeholder="Format: XXXXXXXXXX (10 digits)">
         </div>
         <div class="field">
             <label class="label">Email</label>

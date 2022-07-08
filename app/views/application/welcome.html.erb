@@ -1,5 +1,10 @@
-<div><%= flash[:notice] %></div>
+<% if flash[:notice] %>
+    <div class="message is-dark">
+        <div class="message-body has-text-left">
+            <%= flash[:notice] %>
+        </div>
+    </div>
+<% end %>
 
-<h1>OmniPoint</h1>
-<h2>Schedule appointments at any business.</h2>
+<h1 class="title is-size-4">Schedule appointments at any business.</h1>
 <%= link_to "Get Started", businesses_path %>

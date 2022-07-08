@@ -1,4 +1,10 @@
-<div><%= flash[:notice] %></div>
+<% if flash[:notice] %>
+    <div class="message is-dark">
+        <div class="message-body has-text-left">
+            <%= flash[:notice] %>
+        </div>
+    </div>
+<% end %>
 
 <h1><%= @business.name %></h1>
 
