@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
         @client = Client.find_or_initialize_by(name: params[:client_name], number: params[:client_number], email: params[:client_email])
         
         if @client.save
-            @appointment = Appointment.new(
+            @appointment = Appointment.find_or_initialize_by(
                 client: @client,
                 offer: Offer.find_by(service_id: params[:service_id], technician_id: params[:technician_id]),
                 time: AvailableTime.find(params[:time_id]).time
