@@ -1,21 +1,51 @@
-<div><%= flash[:notice] %></div>
+<% if flash[:notice] %>
+    <div class="message is-dark">
+        <div class="message-body has-text-left">
+            <%= flash[:notice] %>
+        </div>
+    </div>
+<% end %>
 
-<h1>Your appointment is confirmed!</h1>
+<h1 class="title">Your appointment is confirmed!</h1>
 
-<div>
-    <ul>
-        <li>Your appointment for <strong><%= @client.name %></strong></li>
-        <li>at <strong><%= @business.name %></strong> in <strong><%= @business.location %></strong></li>
-        <li>for <strong><%= @service.name %></strong> with <strong><%= @technician.name %></strong></li>
-        <li>has been scheduled for <strong><%= @appointment.readable_time %></strong>.</li>
-        <li>We'll email <strong><%= @client.email %></strong> or text <strong><%= @client.number %></strong> with updates.</li>
-    </ul>
-<div>
+<div class="message mx-6 is-dark">
+    <div class="message-body">
+        <p class="has-text-left">
+            Your appointment for <strong><%= @client.name %></strong>
+            at <strong><%= @business.name %></strong> in <strong><%= @business.location %></strong>
+            for <strong><%= @service.name %></strong> with <strong><%= @technician.name %></strong>
+            has been scheduled for <strong><%= @appointment.readable_time %></strong>.
+            We'll email <strong><%= @client.email %></strong> or text <strong><%= @client.readable_number %></strong> with updates.
+        </p>
+    </div>
+</div>
 
-<div>
+<div class="p-4">
     <%= @qrcode.html_safe %>
-<div>
+</div>
 
-<%= link_to "Add to Calendar", "#{appointment_path(@appointment)}/calendar" %>
-<%= button_to "Cancel your appointment", @appointment, method: :delete %>
-<%= link_to "Go Home", "/" %>
+<%= link_to "Add to Calendar", "#{appointment_path(@appointment)}/calendar", class: "button is-light mt-4" %>
+<%= button_to "Cancel your appointment", @appointment, method: :delete, class: "button is-light mt-4" %>
+<%= link_to "Go Home", "/", class: "button is-dark mt-4" %>
+
+<div class="card has-text-left mt-4">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src=<%= image_url('logo.png') %> alt="site logo"/>
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="title is-4"><%= @business.name %></p>
+        <p class="subtitle is-6"><%= @business.location %></p>
+      </div>
+    </div>
+    <div class="content">
+        <p class="is-italic">
+            > You're all good to go! Thanks for using OmniPoint!
+        </p>
+        <time class="is-italic">> Appointment time: <%= @appointment.readable_time %></time>
+    </div>
+  </div>
+</div>

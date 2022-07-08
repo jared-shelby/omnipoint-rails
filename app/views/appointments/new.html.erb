@@ -1,6 +1,6 @@
-<h1><%= @business.name %></h1>
-<h2>Schedule an Appointment</h2>
-<hr/>
+<h1 class="title"><%= @business.name %></h1>
+<h2 class="subtitle"><%= @business.location %></h2>
+<h3 class="is-size-4">Schedule an Appointment</h3>
 
 <%= form_tag(@form_url, method: @form_method) do %>
     <%= hidden_field_tag "business_id", @business.id %>
@@ -50,15 +50,15 @@
             </div>
         <% end %>
         <div class="field">
-            <label class="label">Name</label>
+            <label class="label has-text-left">Name</label>
             <input class="input" name="client_name" id="client_name" type="text" placeholder="First & last name">
         </div>
         <div class="field">
-            <label class="label">Phone Number</label>
+            <label class="label has-text-left">Phone Number</label>
             <input class="input" name="client_number" id="client_number" type="tel" placeholder="Format: XXXXXXXXXX (10 digits)">
         </div>
         <div class="field">
-            <label class="label">Email</label>
+            <label class="label has-text-left">Email</label>
             <input class="input" name="client_email" id="client_email" type="email" placeholder="Example: hello@omnipoint.com">
         </div>
         <div class="control">

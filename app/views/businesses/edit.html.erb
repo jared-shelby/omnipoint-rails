@@ -1,11 +1,14 @@
-<h1>Edit Business Form</h1>
+<h1 class="title">Edit Business Details</h1>
+<h2 class="subtitle">Use the form below to edit <em><%= @business.name %></em> details.</h2>
 
-<div>
-  <%= form_for(@business) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-    <%= f.submit %>
-  <% end %>
-</div>
+<%= form_for(@business) do |f| %>
+    <div class="field">
+      <%= f.label :name, class: "label has-text-left" %>
+      <%= f.text_field :name, class: "input"  %>
+    </div>
+    <div class="field">
+      <%= f.label :location, class: "label has-text-left" %>
+      <%= f.text_field :location, class: "input" %>
+    </div>
+    <%= f.submit "Update", class: "button is-light" %>
+<% end %>

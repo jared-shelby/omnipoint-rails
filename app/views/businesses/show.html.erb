@@ -6,7 +6,9 @@
     </div>
 <% end %>
 
-<h1><%= @business.name %></h1>
+<h1 class="title"><%= @business.name %></h1>
+<h2 class="subtitle"><%= @business.location %></h2>
 
-<%= link_to "Schedule Appointment", new_appointment_path(business_id: @business.id) %>
-<%= link_to "Edit Business Details", edit_business_path(@business) %>
+<%= link_to "Schedule Appointment", new_appointment_path(business_id: @business.id), class: "button is-dark" %>
+<br/>
+<%= link_to "Edit Business Details", edit_business_path(@business), class: "button is-light mt-4" %>
