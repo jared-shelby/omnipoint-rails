@@ -1,9 +1,11 @@
 <h1>Edit Business Form</h1>
 
-<%= form_for(@business) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :location %>
-  <%= f.text_field :location %>
-  <%= f.submit %>
-<% end %>
+<div>
+  <%= form_for(@business) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+    <%= f.submit %>
+  <% end %>
+</div>
