@@ -1,9 +1,13 @@
 <h1>Ready to schedule?</h1>
-<h2>Select a business below.</h2>
 
-<div>
-    <%= form_tag("/businesses/welcome", method: :get) do %>
-        <%= select_tag "business_id", options_from_collection_for_select(@businesses, "id", "name") %>
-        <%= submit_tag "Next" %>
-    <% end %>
-</div>
+<%= form_tag("/businesses/welcome", method: :get) do %>
+    <div class="field">
+        <label class="label">Select a Business</label>
+        <div class="select">
+            <%= select_tag "business_id", options_from_collection_for_select(@businesses, "id", "name") %>
+        </div>
+    </div>
+    <div class="control">
+        <button type="submit" class="button is-dark">Continue</button>
+    </div>
+<% end %>
