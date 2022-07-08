@@ -46,6 +46,10 @@ class AppointmentsController < ApplicationController
     # show appointment confirmation page
     def show
         @appointment = Appointment.find(params[:id])
+        @client = @appointment.client
+        @business = @appointment.business
+        @service = @appointment.offer.service
+        @technician = @appointment.offer.technician
         @qrcode = RQRCode::QRCode.new(appointment_path(@appointment)).as_svg(module_size: 5)
     end
 

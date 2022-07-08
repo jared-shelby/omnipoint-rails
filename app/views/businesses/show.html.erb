@@ -1,6 +1,6 @@
+<div><%= flash[:notice] %></div>
+
 <h1><%= @business.name %></h1>
 
-<%= flash[:notice] %>
-
-<%= link_to "Make an appointment", new_appointment_path(business_id: @business.id) %>
-<%= link_to "Edit this business", edit_business_path(@business) %>
+<%= link_to "Schedule Appointment", new_appointment_path(business_id: @business.id) %>
+<%= link_to "Edit Business Details", edit_business_path(@business) %>

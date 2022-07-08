@@ -1,33 +1,43 @@
 <h1><%= @business.name %></h1>
+<h2>Schedule an Appointment</h2>
 
-<% if flash[:errors] %>
-    <%= flash[:notice] %>
-    <ul>
-        <% flash[:errors].each do |error| %>
-            <li><%= error %></li>
+<div>
+    <%= form_tag(@form_url, method: @form_method) do %>
+        <%= hidden_field_tag "business_id", @business.id %>
+        <% if @service.nil? %>
+            <h3>What are you coming in for?</h3>
+            <%= select_tag("service_id", options_from_collection_for_select(@services, "id", "name")) %>
+        <% else %>
+            <%= hidden_field_tag "service_id", @service.id %>
+            <p><strong>Service:</strong> <%= @service.name %> - $<%= @service.price.to_i %></p>
+            <% if !request.original_url.include? "technician_id" %>
+                <h3>Who would you like to see?</h3>
+            <% end %>
         <% end %>
-    </ul>
-<% end %>
-
-<%= form_tag(@form_url, method: @form_method) do %>
-    <%= hidden_field_tag "business_id", @business.id %>
-    <% if @service.nil? %>
-        <%= select_tag("service_id", options_from_collection_for_select(@services, "id", "name")) %>
-    <% else %>
-        <%= hidden_field_tag "service_id", @service.id %>
-        <p>Service: <%= @service.name %></p>
+        <% if @technician.nil? && !@service.nil? %>
+            <%= select_tag "technician_id", options_from_collection_for_select(@technicians, "id", "name") %>
+        <% elsif !@technician.nil? %>
+            <%= hidden_field_tag "technician_id", @technician.id %>
+            <p><strong>Technician:</strong> <%= @technician.name %></p>
+        <% end %>
+        <% if !@offer.nil? %>
+            <h3>When would you like to come in?</h3>
+            <p>Time: <%= select_tag "time_id", options_from_collection_for_select(@availability, "id", "readable") %></p>
+            <h4>Your details:</h4>
+            <% if flash[:errors] %>
+                <div>
+                    <%= flash[:notice] %>
+                    <ul>
+                        <% flash[:errors].each do |error| %>
+                            <li><%= error %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+            <p>Name: <%= text_field_tag "client_name" %></p>
+            <p>Phone number: <%= number_field_tag "client_number" %></p>
+            <p>Email address: <%= text_field_tag "client_email" %></p>
+        <% end %>
+        <%= submit_tag "Done" %>
     <% end %>
-    <% if @technician.nil? && !@service.nil? %>
-        <%= select_tag "technician_id", options_from_collection_for_select(@technicians, "id", "name") %>
-    <% elsif !@technician.nil? %>
-        <%= hidden_field_tag "technician_id", @technician.id %>
-        <p>Technician: <%= @technician.name %></p>
-    <% end %>
-    <% if !@offer.nil? %>
-        <p>Time: <%= select_tag "time_id", options_from_collection_for_select(@availability, "id", "readable") %></p>
-        <p>Name: <%= text_field_tag "client_name" %></p>
-        <p>Phone number: <%= number_field_tag "client_number" %></p>
-        <p>Email address: <%= text_field_tag "client_email" %></p>
-    <% end %>
-    <%= submit_tag "Next" %>
-<% end %>
+</div>

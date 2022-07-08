@@ -1,7 +1,9 @@
-<h1>Welcome to OmniPoint</h1>
-<p>Please select a business below to get started scheduling your appointment:</p>
+<h1>Ready to schedule?</h1>
+<h2>Select a business below.</h2>
 
-<%= form_tag("/businesses/welcome", method: :get) do %>
-    <%= select_tag "business_id", options_from_collection_for_select(@businesses, "id", "name") %>
-    <%= submit_tag "Next: schedule an appointment" %>
-<% end %>
+<div>
+    <%= form_tag("/businesses/welcome", method: :get) do %>
+        <%= select_tag "business_id", options_from_collection_for_select(@businesses, "id", "name") %>
+        <%= submit_tag "Next" %>
+    <% end %>
+</div>
