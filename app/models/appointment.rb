@@ -6,6 +6,6 @@ class Appointment < ApplicationRecord
   has_one :business, through: :technician
 
   def readable_time
-    self.time.strftime("%A, %B %d at %H:%M")
+    self.time.strftime("%A, %B %d at %l:00%P")
   end
 end
